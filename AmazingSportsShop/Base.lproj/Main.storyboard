@@ -224,7 +224,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="323" id="fN0-yA-i34">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="323" id="fN0-yA-i34" customClass="SuggestionTableViewCell" customModule="AmazingSportsShop" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="694" width="375" height="323"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fN0-yA-i34" id="jzQ-Jz-lgX">
@@ -237,12 +237,53 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-bp-CC1">
+                                            <rect key="frame" x="0.0" y="69" width="375" height="253.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="2.5" id="aOu-3S-tCq">
+                                                <size key="itemSize" width="185" height="185"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SuggestionCollectionViewCell" id="Zah-8E-Ltg" customClass="SuggestionCollectionViewCell" customModule="AmazingSportsShop" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="185" height="185"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="185" height="185"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="s1" translatesAutoresizingMaskIntoConstraints="NO" id="XSn-6n-jFr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="185" height="185"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="XSn-6n-jFr" secondAttribute="bottom" id="f9x-e1-qrf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XSn-6n-jFr" secondAttribute="trailing" id="hoC-OY-USb"/>
+                                                        <constraint firstItem="XSn-6n-jFr" firstAttribute="top" secondItem="Zah-8E-Ltg" secondAttribute="top" id="iMQ-Ly-Xga"/>
+                                                        <constraint firstItem="XSn-6n-jFr" firstAttribute="leading" secondItem="Zah-8E-Ltg" secondAttribute="leading" id="k9m-XE-3Il"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="XSn-6n-jFr" id="3Rl-oe-Qya"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Jav-bp-CC1" secondAttribute="trailing" id="5iF-gh-rYX"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jav-bp-CC1" secondAttribute="bottom" id="DrF-dm-Kmr"/>
+                                        <constraint firstItem="Jav-bp-CC1" firstAttribute="leading" secondItem="jzQ-Jz-lgX" secondAttribute="leading" id="Oed-Dz-LIK"/>
                                         <constraint firstItem="UFx-R2-aLl" firstAttribute="top" secondItem="jzQ-Jz-lgX" secondAttribute="top" constant="24" id="ith-Qx-ALp"/>
                                         <constraint firstItem="UFx-R2-aLl" firstAttribute="centerX" secondItem="jzQ-Jz-lgX" secondAttribute="centerX" id="m9Q-3L-sTh"/>
+                                        <constraint firstItem="Jav-bp-CC1" firstAttribute="top" secondItem="UFx-R2-aLl" secondAttribute="bottom" constant="24" id="z69-Dx-mSr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="collectionView" destination="Jav-bp-CC1" id="nk9-Lj-1w9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
