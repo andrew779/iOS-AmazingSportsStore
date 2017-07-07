@@ -15,7 +15,7 @@ protocol ProductImagesPVCDelegate: class {
 
 class ProductImagesPVC: UIPageViewController {
 
-    var images: [UIImage]?
+    var product: Product!
     
     weak var pageViewControllerDelegate: ProductImagesPVCDelegate?
     
@@ -26,8 +26,8 @@ class ProductImagesPVC: UIPageViewController {
     lazy var controllers: [UIViewController] = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var controllers = [UIViewController]()
-        if let images = self.images {
-            for image in images {
+        if let imageLinks = self.product.imageLinks {
+            for imageLink in imageLinks {
                 let productImageVC = storyboard.instantiateViewController(withIdentifier: Storyboard.ProductImageVC)
                 controllers.append(productImageVC)
             }
@@ -66,7 +66,7 @@ class ProductImagesPVC: UIPageViewController {
         for (index, vc) in controllers.enumerated() {
             if viewController == vc {
                 if let productImageVC = viewController as? ProductImageVC {
-                    productImageVC.image = self.images?[index]
+                    productImageVC.imageLink = self.product.imageLinks?[index]
                     
                     self.pageViewControllerDelegate?.turnPageController(to: index)
                 }

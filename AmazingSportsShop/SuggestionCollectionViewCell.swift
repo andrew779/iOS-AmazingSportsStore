@@ -11,10 +11,16 @@ import UIKit
 class SuggestionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
-    var image: UIImage! {
+    var imageLink: String! {
         didSet {
-            imageView.image = image
-            setNeedsLayout()
+            FIRImage.downloadImage(url: imageLink) { (image, error) in
+                if error != nil {
+                    print(error!)
+                }
+                    self.imageView.image = image
+                    self.layoutIfNeeded()
+//                    self.setNeedsLayout()
+            }
         }
     }
 }

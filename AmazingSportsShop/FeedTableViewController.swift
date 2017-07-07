@@ -26,9 +26,14 @@ class FeedTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    // MARK: - Fetching from Firebase
+    
     func fetchProducts() {
-        products = Product.fetchProducts()
-        tableView.reloadData()
+        Product.fetchProducts { (products) in
+            self.products = products
+            self.tableView.reloadData()
+        }
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.toProductDetailSegue {

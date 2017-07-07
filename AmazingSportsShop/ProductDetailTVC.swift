@@ -17,7 +17,8 @@ class ProductDetailTVC: UITableViewController {
         static let buyButtonCell = "BuyButtonCell"
         static let showProductDetailCell = "ShowProductDetailCell"
         static let toProductImagesPVCSuge = "toProductImagesPVCSuge"
-        static let suggestionCell = "SuggestionTableViewCell"
+        static let suggestionTableViewCell = "SuggestionTableViewCell"
+        static let suggestionCollectionViewCell = "SuggestionCollectionViewCell"
     }
     
     @IBOutlet weak var productImagesHeaderView: ProductImagesHeaderView!
@@ -25,7 +26,7 @@ class ProductDetailTVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.toProductImagesPVCSuge {
             if let imagesPVC = segue.destination as? ProductImagesPVC {
-                imagesPVC.images = product.images
+                imagesPVC.product = product
                 imagesPVC.pageViewControllerDelegate = productImagesHeaderView
             }
         }
@@ -70,7 +71,7 @@ class ProductDetailTVC: UITableViewController {
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.suggestionCell, for: indexPath) as! SuggestionTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.suggestionTableViewCell, for: indexPath) as! SuggestionTableViewCell
             cell.selectionStyle = .none
             return cell
             
@@ -105,14 +106,30 @@ extension ProductDetailTVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return product.relatedProductUIDs?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestionCollectionViewCell", for: indexPath) as! SuggestionCollectionViewCell
-        let products = Product.fetchProducts()
-        cell.image = products[indexPath.item].images?.first
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Storyboard.suggestionCollectionViewCell, for: indexPath) as! SuggestionCollectionViewCell
+        if let uid = product.relatedProductUIDs?[indexPath.item] {
+            
+            FirebaseReference.products(uid: uid).reference().observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? [String : Any] else {return}
+                let foundProduct = Product(dictionary: dictionary)
+                cell.imageLink = foundProduct.featuredImageLink
+            })
+        }
         return cell
+    }
+    
+    func findingRelatedProduct(uid: String) -> Product?{
+        var foundProduct:Product?
+        FirebaseReference.products(uid: uid).reference().observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            foundProduct = Product(dictionary: dictionary)
+            
+        })
+        return foundProduct
     }
 }
 

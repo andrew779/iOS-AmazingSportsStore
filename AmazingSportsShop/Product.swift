@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Product {
     
@@ -17,6 +18,9 @@ class Product {
     var description: String?
     var detail: String?
     var relatedProductUIDs: [String]?
+    
+    var imageLinks: [String]?
+    var featuredImageLink: String?
     
     init(uid: String?, name: String?, images: [UIImage]?, price: Double?, description: String?, detail: String?, relatedProductUIDs: [String]? = ["875942-100","880843-003","384664-113", "805144-852"]){
         self.uid = uid
@@ -66,3 +70,112 @@ class Product {
         return shoes
     }
 }
+
+// MARK: - Firebase
+extension Product {
+    var ref: DatabaseReference! {
+        get {
+            if let uid = self.uid {
+                return FirebaseReference.products(uid: uid).reference()
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    convenience init (dictionary: [String : Any]) {
+        let uid = dictionary["uid"] as? String
+        let name = dictionary["name"] as? String
+        let price = dictionary["price"] as? Double
+        let description = dictionary["description"] as? String
+        let detail = dictionary["detail"] as? String
+        let relatedProductUIDs = dictionary["relatedProductUIDs"] as? [String]
+        
+        var imageLinks = [String]()
+        if let imageLinkDict = dictionary["images"] as? [String : Any] {
+            for (_, imageLink) in imageLinkDict {
+                imageLinks.append(imageLink as! String)
+            }
+        }
+        
+        self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
+        self.imageLinks = imageLinks
+        self.featuredImageLink = imageLinks[0]
+    }
+    
+    class func fetchProducts(completion: @escaping ([Product]) -> Void) {
+        Database.database().reference().child("products").observeSingleEvent(of: .value, with: { (snapshot) in
+            var products = [Product]()
+            for child in snapshot.children {
+                if let child = child as? DataSnapshot, let dictionary = child.value as? [String : Any] {
+                    let product = Product(dictionary: dictionary)
+                    products.append(product)
+                }
+            }
+            completion(products)
+        }) { (error) in
+            print(error)
+        }
+    }
+    // two roles: 1.customers; 2.admin,store owners
+    // 2.admin: upload products, manage purchases
+    // 1 customer
+    // 1. create a new product in the app
+    func save(completion: @escaping (Error?) -> Void) {
+        //save images to Firebase storage with the productUID
+        if let images = images {
+            for image in images {
+                let fireImage = FIRImage(image: image)
+                let randomID = ref.childByAutoId().key
+                fireImage.save(randomID, completion: { (error) in
+                    //save the image downloadURL to product database
+                    self.ref.child("images").childByAutoId().setValue(fireImage.downloadURL ?? "")
+                    completion(error)
+                })
+            }
+        }
+        
+        self.ref.setValue(toDictionary())
+    }
+    
+    private func toDictionary() -> [String : Any] {
+        guard let uid = self.uid, let name = self.name, let price = self.price, let description = description, let detail = detail, let relatedProductUIDs = relatedProductUIDs else {
+            return [:]
+        }
+        
+        return [
+            "uid" : uid,
+            "name" : name,
+            "price" : price,
+            "description" : description,
+            "detail" : detail,
+            "relatedProductUIDs" : relatedProductUIDs
+        ]
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
