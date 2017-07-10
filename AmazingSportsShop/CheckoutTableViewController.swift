@@ -83,7 +83,8 @@ class CheckoutTableViewController: UITableViewController {
     
     private func postToStripe(token: STPToken) {
         //url to server
-        let url = "http://localhost/nike-retail/payment.php"
+        let url = "https://aqueous-fortress-68279.herokuapp.com/payment.php"
+        //"http://localhost/nike-retail/payment.php"
         let params: [String : Any] = [
             "stripeToken" : token.tokenId,
             "amount" : shoppingCart.total!,
