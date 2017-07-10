@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedTableViewController: UITableViewController {
 
@@ -15,6 +16,7 @@ class FeedTableViewController: UITableViewController {
     struct Storyboard {
         static let feedProductCell = "FeedProductCell"
         static let toProductDetailSegue = "toProductDetailSegue"
+        static let loginViewController = "LoginViewController"
     }
     
     override func viewDidLoad() {
@@ -25,6 +27,18 @@ class FeedTableViewController: UITableViewController {
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAuthentication()
+    }
+    
+    //check authentication
+    func checkAuthentication() {
+        if Firebase.Auth.auth().currentUser == nil {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Storyboard.loginViewController)
+            present(loginVC, animated: true)
+        }
+    }
     
     // MARK: - Fetching from Firebase
     
@@ -32,6 +46,7 @@ class FeedTableViewController: UITableViewController {
         Product.fetchProducts { (products) in
             self.products = products
             self.tableView.reloadData()
+            
         }
         
     }

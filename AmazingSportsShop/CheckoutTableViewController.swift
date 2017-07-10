@@ -9,54 +9,44 @@
 import UIKit
 
 class CheckoutTableViewController: UITableViewController {
-
-    struct Storyboard {
-        static let billingTitleCell = "billingTitleCell"      // cell 0
-        static let billingInfoCell = "billingInfoCell"                        // cell 1
-        static let cartDetailCell = "cartDetailCell"            // cell 2
-        static let cartTotalCell = "cartTotalCell"              // cell 3
-        static let submitButtonCell = "submitButtonCell"    // cell 4
-    }
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var cardNumberTextField: UITextField!
+    @IBOutlet weak var expirationDateTextField: UITextField!
+    @IBOutlet weak var securityTextField: UITextField!
+    
+    @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var shippingCostLabel: UILabel!
+    @IBOutlet weak var taxLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    @IBOutlet weak var submitOrderButton: UIButton!
+    
+    var shoppingCart: ShoppingCart!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.estimatedRowHeight = 80.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-    }
-
-    
-}
-
-extension CheckoutTableViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        title = "CHECKOUT"
+        updateUI()
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.billingTitleCell, for: indexPath)
-            return cell
-            
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.billingInfoCell, for: indexPath)
-            return cell
-            
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cartDetailCell, for: indexPath)
-            return cell
-            
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cartTotalCell, for: indexPath)
-            return cell
-            
-        case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.submitButtonCell, for: indexPath)
-            return cell
-            
-        default: return UITableViewCell()
+    private func updateUI() {
+        if let shoppingCart = shoppingCart {
+            if let subtotal = shoppingCart.subtotal, let shipping = shoppingCart.shipping, let tax = shoppingCart.tax, let total = shoppingCart.total {
+                subtotalLabel.text = "$\(subtotal)"
+                if shipping == 0 {
+                    shippingCostLabel.text = "FREE"
+                } else {
+                    shippingCostLabel.text = "$\(shipping)"
+                }
+                
+                taxLabel.text = "$\(tax)"
+                totalLabel.text = "$\(total)"
+            }
         }
     }
+    
+    @IBAction func submitDidTouch(_ sender: Any) {
+    }
+    
 }

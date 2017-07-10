@@ -100,7 +100,9 @@ extension Product {
         
         self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
         self.imageLinks = imageLinks
-        self.featuredImageLink = imageLinks[0]
+        self.featuredImageLink = imageLinks.first ?? dictionary["featuredImageLink"] as? String
+        
+        //
     }
     
     class func fetchProducts(completion: @escaping ([Product]) -> Void) {
@@ -138,7 +140,7 @@ extension Product {
         self.ref.setValue(toDictionary())
     }
     
-    private func toDictionary() -> [String : Any] {
+    func toDictionary() -> [String : Any] {
         guard let uid = self.uid, let name = self.name, let price = self.price, let description = description, let detail = detail, let relatedProductUIDs = relatedProductUIDs else {
             return [:]
         }
@@ -149,7 +151,8 @@ extension Product {
             "price" : price,
             "description" : description,
             "detail" : detail,
-            "relatedProductUIDs" : relatedProductUIDs
+            "relatedProductUIDs" : relatedProductUIDs,
+            "featuredImageLink" : imageLinks?.first as Any
         ]
     }
 }

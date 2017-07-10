@@ -35,9 +35,9 @@ class ProductDetailTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = product.name
-        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.estimatedRowHeight = 74
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
@@ -62,6 +62,7 @@ class ProductDetailTVC: UITableViewController {
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.buyButtonCell, for: indexPath) as! BuyButtonCell
             cell.product = product
+            cell.delegate = self
             cell.selectionStyle = .none
             return cell
             
@@ -134,7 +135,23 @@ extension ProductDetailTVC: UICollectionViewDataSource {
 }
 
 extension ProductDetailTVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //TODO: collectionView navigation
+        let newDetailTVC = ProductDetailTVC()
+        //selected product uid
+        guard let uid = product.relatedProductUIDs?[indexPath.item] else {return}
+        FirebaseReference.products(uid: uid).reference().observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            let foundProduct = Product(dictionary: dictionary)
+            newDetailTVC.product = foundProduct
+            self.product = foundProduct
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
+            
+        })
+        
+    }
 }
 
 extension ProductDetailTVC: UICollectionViewDelegateFlowLayout {
@@ -150,7 +167,12 @@ extension ProductDetailTVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+// MARK: - BuyButtonCellDelegate
+extension ProductDetailTVC: BuyButtonCellDelegate {
+    func addToCart(product: Product) {
+        ShoppingCart.add(product: product)
+    }
+}
 
 
 

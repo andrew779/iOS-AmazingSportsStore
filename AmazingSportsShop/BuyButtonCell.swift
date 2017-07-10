@@ -8,24 +8,23 @@
 
 import UIKit
 
+protocol BuyButtonCellDelegate: class {
+    func addToCart(product: Product)
+}
+
 class BuyButtonCell: UITableViewCell {
 
     @IBOutlet weak var buyButton: UIButton!
+    
+    weak var delegate: BuyButtonCellDelegate?
     
     var product: Product! {
         didSet{
             buyButton.setTitle("BUY FOR $\(product.price ?? 0)", for: .normal)
         }
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBAction func buyButtonDidTap() {
+        delegate?.addToCart(product: product)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
