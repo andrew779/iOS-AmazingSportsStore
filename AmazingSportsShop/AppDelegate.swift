@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import Stripe
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -22,13 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FirebaseApp.configure()
         configureAppearance()
+        configureStripe()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
-        
-        
         return true
+    }
+    
+    func configureStripe() {
+        Stripe.setDefaultPublishableKey("pk_test_NJSNdVKcfwZQsb3UKRHqhKmF")
     }
     
     

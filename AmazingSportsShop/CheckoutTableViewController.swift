@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Stripe
+import AFNetworking
+
 
 class CheckoutTableViewController: UITableViewController {
     
@@ -47,6 +50,70 @@ class CheckoutTableViewController: UITableViewController {
     }
     
     @IBAction func submitDidTouch(_ sender: Any) {
+        // 1 - initiate a stripe card
+        var stripeCard = STPCard()
+        // 1.1 - get the credit card information from the text fields
+        if expirationDateTextField.text?.isEmpty == false {
+            let expirationDate = expirationDateTextField.text?.components(separatedBy: "/")
+            let expMonth = UInt(expirationDate?[0] ?? "0") ?? 0
+            let expYear = UInt(expirationDate?[1] ?? "0") ?? 0
+            
+            // 2 - send the card information to stripe to get a token
+            stripeCard.number = cardNumberTextField.text
+            stripeCard.cvc = securityTextField.text
+            stripeCard.expMonth = expMonth
+            stripeCard.expYear = expYear
+            
+            // 3 - validate the card numbers
+            STPAPIClient.shared().createToken(withCard: stripeCard, completion: { (token, error) in
+                if let error = error {
+                    //handle error
+                    self.handleError(error:error)
+                    return
+                }
+                
+                //post the token to stripe using webserver
+                if let token = token {
+                    self.postToStripe(token:token)
+                }
+                
+            })
+        }
     }
     
+    private func postToStripe(token: STPToken) {
+        //url to server
+        let url = "http://localhost/nike-retail/payment.php"
+        let params: [String : Any] = [
+            "stripeToken" : token.tokenId,
+            "amount" : shoppingCart.total!,
+            "currency" : "cad",
+            "description" : self.emailTextField.text ?? ""]
+        let _ = AFHTTPSessionManager().post(url, parameters: params, success: { (operation, responseObject) in
+            if let response = responseObject as? [String : String] {
+                print(response["status"]! + "---------" + response["message"]!)
+                self.handleSuccess(message: response["message"]!)
+            }
+        }) { (operation, error) in
+            self.handleError(error: error)
+        }
+    }
+    
+    private func handleSuccess(message: String) {
+        let alert = UIAlertController(title: "Succeed", message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func handleError(error: Error){
+        let alert = UIAlertController(title: "Ooops! Error", message: error.localizedDescription, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
