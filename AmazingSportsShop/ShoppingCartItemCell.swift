@@ -21,6 +21,12 @@ class ShoppingCartItemCell: UITableViewCell {
         }
     }
     
+    var removeButtonTouched: ((Product) -> Void)?
+    
+    @IBAction func removeButtonDidTouch(_ sender: Any) {
+        removeButtonTouched?(product)
+    }
+    
     func updateUI() {
         productImageView.image = nil
         if let imageLink = product.featuredImageLink {
@@ -36,6 +42,7 @@ class ShoppingCartItemCell: UITableViewCell {
         
         productNameLabel.text = product.name
         productPriceLabel.text = "$\(product.price ?? 0)"
-        
     }
+    
+    
 }

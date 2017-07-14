@@ -25,6 +25,10 @@ class CheckoutTableViewController: UITableViewController {
     
     @IBOutlet weak var submitOrderButton: UIButton!
     
+    struct Storyboard {
+        static let showSummaryTVC = "ShowSummary"
+    }
+    
     var shoppingCart: ShoppingCart!
     
     override func viewDidLoad() {
@@ -49,9 +53,16 @@ class CheckoutTableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.showSummaryTVC {
+            let summaryTVC = segue.destination as! SummaryTVC
+            summaryTVC.shoppingCart = self.shoppingCart
+        }
+    }
+    
     @IBAction func submitDidTouch(_ sender: Any) {
         // 1 - initiate a stripe card
-        var stripeCard = STPCard()
+        let stripeCard = STPCard()
         // 1.1 - get the credit card information from the text fields
         if expirationDateTextField.text?.isEmpty == false {
             let expirationDate = expirationDateTextField.text?.components(separatedBy: "/")
@@ -75,6 +86,7 @@ class CheckoutTableViewController: UITableViewController {
                 //post the token to stripe using webserver
                 if let token = token {
                     self.postToStripe(token:token)
+                    
                 }
                 
             })
@@ -83,8 +95,7 @@ class CheckoutTableViewController: UITableViewController {
     
     private func postToStripe(token: STPToken) {
         //url to server
-        let url = "https://aqueous-fortress-68279.herokuapp.com/payment.php"
-        //"http://localhost/nike-retail/payment.php"
+        let url = URLConstant.webserverURL
         let params: [String : Any] = [
             "stripeToken" : token.tokenId,
             "amount" : shoppingCart.total!,
@@ -103,7 +114,9 @@ class CheckoutTableViewController: UITableViewController {
     private func handleSuccess(message: String) {
         let alert = UIAlertController(title: "Succeed", message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: Storyboard.showSummaryTVC, sender: nil)
+//            self.dismiss(animated: true, completion: {
+//            })
         }
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
@@ -113,6 +126,7 @@ class CheckoutTableViewController: UITableViewController {
         let alert = UIAlertController(title: "Ooops! Error", message: error.localizedDescription, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
+            
         }
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)

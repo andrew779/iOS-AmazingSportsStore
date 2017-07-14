@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AmazingSportsShop/Product.swift"
-            timestampString = "521336123.217324"
+            timestampString = "521748983.854744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -182,47 +182,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AmazingSportsShop/ShoppingCartItemCell.swift"
-            timestampString = "521336123.220462"
+            filePath = "AmazingSportsShop/CheckoutTableViewController.swift"
+            timestampString = "521748983.85496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "updateUI()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingCart.swift"
+            timestampString = "521752762.569488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "calculateCart(product:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "AmazingSportsShop.ShoppingCartItemCell.updateUI() -&gt; ()"
+                  symbolName = "closure #1 (__ObjC.MutableData) -&gt; __ObjC.TransactionResult in static AmazingSportsShop.ShoppingCart.(calculateCart in _889EE13D12297CB8AE7581026EA54079)(product: AmazingSportsShop.Product, completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "AmazingSportsShop"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wenzhongzheng/iOSProject/selfLearning/Nike/AmazingSportsShop/AmazingSportsShop/ShoppingCartItemCell.swift"
-                  timestampString = "521273932.849615"
+                  urlString = "file:///Users/wenzhongzheng/iOSProject/selfLearning/Nike/AmazingSportsShop/AmazingSportsShop/ShoppingCart.swift"
+                  timestampString = "521659341.420761"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "1395">
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "820">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.UIImage&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in AmazingSportsShop.ShoppingCartItemCell.updateUI() -&gt; ()"
+                  symbolName = "implicit closure #2 : @autoclosure () throws -&gt; Swift.Dictionary&lt;Swift.String, Any&gt; in closure #1 (__ObjC.MutableData) -&gt; __ObjC.TransactionResult in static AmazingSportsShop.ShoppingCart.(calculateCart in _889EE13D12297CB8AE7581026EA54079)(product: AmazingSportsShop.Product, completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "AmazingSportsShop"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wenzhongzheng/iOSProject/selfLearning/Nike/AmazingSportsShop/AmazingSportsShop/ShoppingCartItemCell.swift"
-                  timestampString = "521273932.852538"
+                  urlString = "file:///Users/wenzhongzheng/iOSProject/selfLearning/Nike/AmazingSportsShop/AmazingSportsShop/ShoppingCart.swift"
+                  timestampString = "521659341.428907"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "25">
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -230,16 +246,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AmazingSportsShop/ShoppingCartItemCell.swift"
-            timestampString = "521336123.222017"
+            filePath = "AmazingSportsShop/ShoppingCart.swift"
+            timestampString = "521752762.569555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "updateUI()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "fetch(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -249,13 +265,93 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AmazingSportsShop/ShoppingCartItemCell.swift"
-            timestampString = "521336123.22323"
+            filePath = "AmazingSportsShop/ShoppingCart.swift"
+            timestampString = "521752762.569603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "updateUI()"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetch(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingBagTableViewController.swift"
+            timestampString = "521752762.569649"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingBagTableViewController.swift"
+            timestampString = "521752762.570146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingBagTableViewController.swift"
+            timestampString = "521752762.570509"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingCart.swift"
+            timestampString = "521752762.570786"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "fetch(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AmazingSportsShop/ShoppingCart.swift"
+            timestampString = "521752762.570838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "remove(product:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

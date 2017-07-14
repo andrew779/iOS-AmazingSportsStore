@@ -3,7 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in ProductDetailTVC.findingRelatedProduct(uid:):ProductDetailTVC.swift">
+         contextName = "SuggestionCollectionViewCell.init(coder:):SuggestionCollectionViewCell.swift">
       </ContextState>
       <ContextState
          contextName = "ProductDetailTVC.collectionView(_:cellForItemAt:):ProductDetailTVC.swift">
@@ -14,7 +14,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SuggestionCollectionViewCell.init(coder:):SuggestionCollectionViewCell.swift">
+         contextName = "closure #1 in static ShoppingCart.calculateCart(product:completion:):ShoppingCart.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ShoppingBagTableViewController.tableView(_:numberOfRowsInSection:):ShoppingBagTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "products">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in ShoppingBagTableViewController.tableView(_:cellForRowAt:):ShoppingBagTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ShoppingBagTableViewController.tableView(_:cellForRowAt:):ShoppingBagTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in ShoppingBagTableViewController.tableView(_:cellForRowAt:):ShoppingBagTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ProductDetailTVC.findingRelatedProduct(uid:):ProductDetailTVC.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
