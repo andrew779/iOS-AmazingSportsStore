@@ -20,6 +20,7 @@
 		3E1360A31F07FE0C00D95492 /* ProductDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1360A21F07FE0C00D95492 /* ProductDetailTVC.swift */; };
 		3E1360A51F08124A00D95492 /* ProductImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1360A41F08124A00D95492 /* ProductImageVC.swift */; };
 		3E1360A71F0812E100D95492 /* ProductImagesPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1360A61F0812E100D95492 /* ProductImagesPVC.swift */; };
+		3E30DEF11F1AC753001589CC /* PaymentInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DEF01F1AC753001589CC /* PaymentInfoCell.swift */; };
 		3E43F7B01F0C59360090D773 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F7AF1F0C59360090D773 /* FirebaseReference.swift */; };
 		3E43F7B21F0C82C60090D773 /* FIRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F7B11F0C82C60090D773 /* FIRImage.swift */; };
 		3E4625401F1087F0009E2960 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E46253F1F1087F0009E2960 /* LoginViewController.swift */; };
@@ -55,6 +56,7 @@
 		3E1360A21F07FE0C00D95492 /* ProductDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailTVC.swift; sourceTree = "<group>"; };
 		3E1360A41F08124A00D95492 /* ProductImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImageVC.swift; sourceTree = "<group>"; };
 		3E1360A61F0812E100D95492 /* ProductImagesPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImagesPVC.swift; sourceTree = "<group>"; };
+		3E30DEF01F1AC753001589CC /* PaymentInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInfoCell.swift; sourceTree = "<group>"; };
 		3E43F7AF1F0C59360090D773 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		3E43F7B11F0C82C60090D773 /* FIRImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRImage.swift; sourceTree = "<group>"; };
 		3E46253F1F1087F0009E2960 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				3E499DA41F085BCD00350C71 /* ShoppingBagTableViewController.swift */,
 				3E8451FA1F085D470074503A /* NumberOfItemsCell.swift */,
 				3E8451FC1F085D800074503A /* ShoppingCartItemCell.swift */,
+				3E30DEF01F1AC753001589CC /* PaymentInfoCell.swift */,
 				3E4F1C371F11F1EB00613EF7 /* CartSubtotalCell.swift */,
 				3E4F1C391F11F3E000613EF7 /* CartTotalCell.swift */,
 			);
@@ -369,6 +372,7 @@
 				3E4F1C381F11F1EB00613EF7 /* CartSubtotalCell.swift in Sources */,
 				3E1360A31F07FE0C00D95492 /* ProductDetailTVC.swift in Sources */,
 				3E1360A71F0812E100D95492 /* ProductImagesPVC.swift in Sources */,
+				3E30DEF11F1AC753001589CC /* PaymentInfoCell.swift in Sources */,
 				3E43F7B01F0C59360090D773 /* FirebaseReference.swift in Sources */,
 				3E499D9C1F08282C00350C71 /* ProductImagesHeaderView.swift in Sources */,
 				3E43F7B21F0C82C60090D773 /* FIRImage.swift in Sources */,
