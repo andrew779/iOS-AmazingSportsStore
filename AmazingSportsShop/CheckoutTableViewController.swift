@@ -101,7 +101,8 @@ class CheckoutTableViewController: UITableViewController {
             "amount" : shoppingCart.total!,
             "currency" : "cad",
             "description" : self.emailTextField.text ?? ""]
-        let _ = AFHTTPSessionManager().post(url, parameters: params, success: { (operation, responseObject) in
+        
+        AFHTTPSessionManager().post(url, parameters: params, constructingBodyWith: nil, progress: nil, success: { (operation, responseObject) in
             if let response = responseObject as? [String : String] {
                 print(response["status"]! + "---------" + response["message"]!)
                 self.handleSuccess(message: response["message"]!)
@@ -109,14 +110,16 @@ class CheckoutTableViewController: UITableViewController {
         }) { (operation, error) in
             self.handleError(error: error)
         }
+        
     }
     
     private func handleSuccess(message: String) {
         let alert = UIAlertController(title: "Succeed", message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { (action) in
+            //go back to root vc
+            self.navigationController?.popToRootViewController(animated: false)
             self.performSegue(withIdentifier: Storyboard.showSummaryTVC, sender: nil)
-//            self.dismiss(animated: true, completion: {
-//            })
+
         }
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)

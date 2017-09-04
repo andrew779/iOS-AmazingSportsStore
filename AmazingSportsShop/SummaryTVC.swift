@@ -15,6 +15,7 @@ class SummaryTVC: UITableViewController {
     
     struct Storyboard {
         static let numberOfItemsCell = "numberOfItemsCell"
+        static let paymentInfoCell = "PaymentInfoCell"
         static let itemCell = "itemCell"
         static let cartDetailCell = "cartDetailCell"
         static let totalCell = "totalCell"
@@ -25,7 +26,7 @@ class SummaryTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchProducts()
-        tableView.estimatedRowHeight = 74
+        tableView.estimatedRowHeight = 84
         tableView.rowHeight = UITableViewAutomaticDimension
         
     }
@@ -52,7 +53,7 @@ class SummaryTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let products = products {
-            return products.count + 4
+            return products.count + 5
         } else {
             return 1
         }
@@ -70,17 +71,23 @@ class SummaryTVC: UITableViewController {
             cell.numberOfItemsLabel.text = products.count == 1 ? "\(products.count) ITEM" : "\(products.count) ITEMS"
             return cell
         } else if indexPath.row == products.count + 1 {
+            //payment info cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.paymentInfoCell, for: indexPath) as! PaymentInfoCell
+            
+            return cell
+            
+        } else if indexPath.row == products.count + 2 {
             //cart detail cell
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cartDetailCell, for: indexPath) as! CartSubtotalCell
             cell.shoppingCart = shoppingCart
             return cell
 
-        } else if indexPath.row == products.count + 2 {
+        } else if indexPath.row == products.count + 3 {
             //cart total cell
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.totalCell, for: indexPath) as! CartTotalCell
             cell.shoppingCart = shoppingCart
             return cell
-        } else if indexPath.row == products.count + 3 {
+        } else if indexPath.row == products.count + 4 {
             //checkout button cell
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.checkoutButtonCell, for: indexPath)
 
@@ -93,6 +100,10 @@ class SummaryTVC: UITableViewController {
             }
             return cell
         }
-
     }
+    
+    @IBAction func continueShoppingDidTouch(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 }

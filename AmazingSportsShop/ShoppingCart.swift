@@ -119,6 +119,7 @@ class ShoppingCart {
             
             //return back the value of the currentData as the new updated cart - so upload back to firebase
             currentData.value = cart
+            //update the current data back to firebase
             return Firebase.TransactionResult.success(withValue: currentData)
             
         }) { (error, committed, snapshot) in
@@ -170,6 +171,7 @@ class ShoppingCart {
 
             //return back the value of the currentData as the new updated cart - so upload back to firebase
             currentData.value = cart
+            //update the currentData back to firebase
             return Firebase.TransactionResult.success(withValue: currentData)
 
         }) { (error, committed, snapshot) in
